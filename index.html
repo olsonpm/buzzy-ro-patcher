@@ -14,13 +14,13 @@
 
   <body>
     <header>
-      <img id="logo" src="img/logo.png">
+      <img id="logo" src="img/logo.png" />
 
       <button id="hamburger" class="hamburger hamburger--twist" type="button">
         <div class="inner">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
       </button>
     </header>
@@ -28,27 +28,41 @@
     <main>
       <ul id="menu" class="fades hidden">
         <li>
-          <button onclick="setup" type="button">Setup</button>
+          <button id="setup" onclick="setup" type="button">
+            <span>Setup</span>
+          </button>
         </li>
         <li>
-          <button onclick="resetCache" type="button">Reset Cache</button>
+          <button id="reset-cache" onclick="resetCache" type="button">
+            <span>Reset Cache</span>
+          </button>
         </li>
       </ul>
+
+      <div id="error-alert" class="fades hidden removed">
+        <h2>Error</h2>
+        <p>
+          Please report the following to the support discord channel or forum
+        </p>
+        <pre id="error-msg" />
+      </div>
     </main>
 
     <footer>
-      <div id="loading-bar"
+      <div
+        id="loading-bar"
         class="label-center"
         data-preset="circle"
-        style="width: 60px; height: 60px;">
-      </div>
+        style="width: 60px; height: 60px"
+      ></div>
 
-      <button id="play"
+      <button
+        id="main-btn"
         class="hvr-ripple-out"
         onclick="cancelOrPlay"
-        type="button">
-
-        Play
+        type="button"
+      >
+        Cancel
       </button>
     </footer>
 

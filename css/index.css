@@ -3,23 +3,28 @@
 /*-------*/
 
 @font-face {
-  font-family: "Poiret One";
-  src: url("/font/PoiretOne-Regular.ttf") format("truetype");
+  font-family: 'Poiret One';
+  src: url('/font/PoiretOne-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Lora';
+  src: url('/font/Lora-VariableFont_wght.ttf') format('truetype');
+}
 
 /*-------*/
 /* main */
 /*-------*/
 
 body {
-  background-image: url("../img/main.png");
+  background-image: url('../img/main.png');
   background-size: auto 454px;
   font-family: 'Poiret One', cursive;
   overflow: hidden;
 }
 
-footer, header {
+footer,
+header {
   padding: 8px 16px;
 }
 
@@ -53,12 +58,13 @@ main {
   margin-right: auto;
 }
 
-#play {
+#main-btn {
   background-color: #ecd5ff;
   font-size: 26px;
   margin-left: auto;
   opacity: 100;
   padding: 0 30px;
+  width: 140px;
 }
 
 #hamburger {
@@ -68,6 +74,21 @@ main {
 #hamburger .bar {
   background-color: white;
   margin-left: auto;
+}
+
+#error-alert {
+  background-color: white;
+  font-family: 'Lora', serif;
+  padding: 16px;
+}
+
+#error-alert h2 {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+#error-msg {
+  margin-top: 16px;
 }
 
 #menu {
@@ -81,25 +102,25 @@ main {
 
 #menu button {
   display: block;
-  text-align: center;
-  width: 100%;
-}
-
-#menu > li {
   height: 46px;
   line-height: 46px;
   padding-left: 16px;
   padding-right: 16px;
   text-align: center;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
-#menu > li + li > button {
-  border-top: 1px solid #2c2c2c;
-}
-
-#menu > li:hover {
+#menu button:hover {
   background-color: rgb(221, 221, 221);
+}
+
+#menu span {
+  display: block;
+}
+
+#menu > li + li span {
+  border-top: 1px solid #2c2c2c;
 }
 
 .fades {
@@ -111,6 +132,9 @@ main {
   opacity: 0;
 }
 
+.removed {
+  display: none;
+}
 
 /*-------------*/
 /* loading bar */
@@ -134,7 +158,6 @@ main {
   font-size: 14px;
   text-shadow: none !important;
 }
-
 
 /*---------------------*/
 /* hover.css overrides */
