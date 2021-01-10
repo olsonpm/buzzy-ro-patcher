@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="css/ress.css" />
+    <link rel="stylesheet" href="css/hamburgers.css" />
+    <link rel="stylesheet" href="css/hover.css" />
+    <link rel="stylesheet" href="css/loading-bar.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <header>
+      <img id="logo" src="img/logo.png">
+
+      <button id="hamburger" class="hamburger hamburger--twist" type="button">
+        <div class="inner">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+      </button>
+    </header>
+
+    <main>
+      <ul id="menu" class="fades hidden">
+        <li>
+          <button onclick="setup" type="button">Setup</button>
+        </li>
+        <li>
+          <button onclick="resetCache" type="button">Reset Cache</button>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <div id="loading-bar"
+        class="label-center"
+        data-preset="circle"
+        style="width: 60px; height: 60px;">
+      </div>
+
+      <button id="play"
+        class="hvr-ripple-out"
+        onclick="cancelOrPlay"
+        type="button">
+
+        Play
+      </button>
+    </footer>
+
+    <script type="text/javascript" src="./js/loading-bar.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
+  </body>
+</html>
