@@ -32,5 +32,8 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "dependencies": {
+    "clean-css-cli": "^4.3.0"
   }
 }
