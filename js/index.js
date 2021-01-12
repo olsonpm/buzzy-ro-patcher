@@ -3,25 +3,27 @@
 const btn = getButtons(),
   errorAlert = document.getElementById('error-alert'),
   errorMsg = document.getElementById('error-msg'),
-  loadingBar = new ldBar('#loading-bar'),
+  loadingBar = document.getElementById('loading-bar'),
+  loadingPct = document.getElementById('loading-pct'),
   hamburger = document.getElementById('hamburger'),
   menu = document.getElementById('menu')
 
-hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', function () {
   hamburger.classList.toggle('active')
   menu.classList.toggle('hidden')
 })
 
-// external.invoke('start_update')
+initButtons()
 
-document.addEventListener('click', evt => {
+external.invoke('start_update')
+
+document.addEventListener('click', function (evt) {
   if (
     !menu.classList.contains('hidden') &&
     !menu.contains(evt.target) &&
     !hamburger.contains(evt.target)
   ) {
-    menu.classList.add('hidden')
-    hamburger.classList.remove('active')
+    closeMenu()
   }
 })
 
@@ -33,11 +35,48 @@ function getButtons() {
   }
 }
 
+function initButtons() {
+  btn.main.addEventListener('click', cancelOrPlay)
+  btn.resetCache.addEventListener('click', resetCache)
+  btn.setup.addEventListener('click', setup)
+}
+
+function setLoadingPct(pct) {
+  loadingPct.textContent = pct + '%'
+  loadingBar.style.width = pct + '%'
+}
+
+function closeMenu() {
+  menu.classList.add('hidden')
+  hamburger.classList.remove('active')
+}
+
 /* eslint-disable no-unused-vars */
 
+function cancelOrPlay() {
+  patchingStatusError(btn.main.textContent.trim())
+  // if (btn.main.textContent.trim() === 'Cancel') {
+  //   external.invoke('cancel_update')
+  // } else {
+  //   external.invoke('play')
+  // }
+}
+
+function resetCache() {
+  external.invoke('reset_cache')
+  closeMenu()
+}
+
+function setup() {
+  external.invoke('setup')
+  closeMenu()
+}
+
 function patchingStatusReady() {
-  loadingBar.set(100)
+  setLoadingPct(100)
   btn.main.textContent = 'Play'
+  btn.main.classList.remove('cancel')
+  btn.main.classList.add('hvr-ripple-out')
 }
 
 function patchingStatusError(msg) {
@@ -46,41 +85,14 @@ function patchingStatusError(msg) {
   errorAlert.classList.remove('hidden')
 }
 
-/*
-
 function patchingStatusDownloading(nbDownloaded, nbTotal, bytesPerSec) {
-  var percentage = (100 * nbDownloaded) / nbTotal
-  if (bytesPerSec > 0) {
-    var downloadSpeed = ' - ' + humanFileSize(bytesPerSec) + '/s'
-  } else {
-    var downloadSpeed = ''
-  }
-  $('#download-progress-bar')
-    .css('width', percentage + '%')
-    .attr('aria-valuenow', percentage)
-  $('#download-progress-text').text(
-    'Downloading: ' + nbDownloaded + '/' + nbTotal + downloadSpeed
-  )
+  const pct = (((100 * nbDownloaded) / nbTotal) * 0.8).toFixed()
+
+  setLoadingPct(pct)
 }
 
 function patchingStatusInstalling(nbInstalled, nbTotal) {
-  var percentage = (100 * nbInstalled) / nbTotal
-  $('#download-progress-bar')
-    .css('width', percentage + '%')
-    .attr('aria-valuenow', percentage)
-  $('#download-progress-text').text(
-    'Installing: ' + nbInstalled + '/' + nbTotal
-  )
-}
+  const pct = (80 + ((100 * nbInstalled) / nbTotal) * 0.2).toFixed()
 
-// Note: Function taken from https://stackoverflow.com/a/20732091
-function humanFileSize(size) {
-  var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024))
-  return (
-    (size / Math.pow(1024, i)).toFixed(2) * 1 +
-    ' ' +
-    ['B', 'kiB', 'MiB', 'GiB', 'TiB'][i]
-  )
+  setLoadingPct(pct)
 }
-
-*/

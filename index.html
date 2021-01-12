@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/ress.css" />
     <link rel="stylesheet" href="css/hamburgers.css" />
     <link rel="stylesheet" href="css/hover.css" />
-    <link rel="stylesheet" href="css/loading-bar.css" />
     <link rel="stylesheet" href="css/index.css" />
   </head>
 
@@ -44,26 +43,25 @@
         <p>
           Please report the following to the support discord channel or forum
         </p>
-        <pre id="error-msg" />
+        <p id="error-msg"></p>
       </div>
     </main>
 
     <footer>
-      <div
-        id="loading-bar"
-        class="label-center"
-        data-preset="circle"
-        style="width: 60px; height: 60px"
-      ></div>
+      <div class="main">
+        <div id="loading-pct"></div>
 
-      <button
-        id="main-btn"
-        class="hvr-ripple-out"
-        onclick="cancelOrPlay"
-        type="button"
-      >
-        Cancel
-      </button>
+        <button
+          id="main-btn"
+          class="cancel"
+          onclick="cancelOrPlay"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <div id="loading-bar"></div>
     </footer>
 
     <script type="text/javascript" src="./js/loading-bar.js"></script>
