@@ -54,12 +54,11 @@ function closeMenu() {
 /* eslint-disable no-unused-vars */
 
 function cancelOrPlay() {
-  patchingStatusError(btn.main.textContent.trim())
-  // if (btn.main.textContent.trim() === 'Cancel') {
-  //   external.invoke('cancel_update')
-  // } else {
-  //   external.invoke('play')
-  // }
+  if (btn.main.textContent.trim() === 'Cancel') {
+    external.invoke('cancel_update')
+  } else {
+    external.invoke('play')
+  }
 }
 
 function resetCache() {
